@@ -1,0 +1,142 @@
+/* ==============================================
+   CSS Reset - 完整版（现代浏览器、Vue/React 通用）
+   清除所有浏览器默认样式，统一基线
+============================================== */
+
+// 1. 全局盒模型 + 清除内外边距（核心）
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// 2. HTML & Body 基础重置
+html {
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB",
+        "Microsoft YaHei", sans-serif;
+    color: #333;
+    background-color: #fff;
+}
+
+// 3. 列表（ul/ol）清除默认点、缩进
+ul,
+ol {
+    list-style: none;
+}
+
+// 4. 链接（a）清除下划线、默认颜色继承
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+// 5. 标题（h1~h6）清除默认 margin、加粗
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+    margin: 0;
+}
+
+// 6. 图片、媒体：去间隙、自适应
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+// 7. 表单控件：统一字体、去默认边框/背景/外发光
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+    border: none;
+    background: transparent;
+    outline: none;
+}
+
+// 8. textarea 允许垂直拉伸
+textarea {
+    resize: vertical;
+}
+
+// 9. 表格合并边框
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+// 10. 清除默认引用样式
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+    content: "";
+    content: none;
+}
+
+// 11. HTML5 新元素统一为块级
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+// 12. 去掉按钮默认点击高亮
+button {
+    cursor: pointer;
+}
+
+// 13. 选中文本默认样式（可选）
+::selection {
+    background: #409eff;
+    color: #fff;
+}
+
+// 14. 滚动条美化（可选，现代项目常用）
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
