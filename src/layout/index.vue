@@ -1,10 +1,7 @@
 <template>
   <div class="layout_container">
     <!-- 左侧菜单 -->
-    <div
-      class="layout_slider"
-      :class="{ fold: LayOutSettingStore.fold ? true : false }"
-    >
+    <div class="layout_slider">
       <Logo></Logo>
       <!-- 展示菜单 -->
       <!-- 滚动组件 -->
@@ -88,10 +85,6 @@ export default {
         border-right: none;
       }
     }
-
-    &.fold {
-      width: $base-menu-min-width;
-    }
   }
 
   .layout_tabbar {
@@ -111,7 +104,6 @@ export default {
     position: absolute;
     width: calc(100% - $base-menu-width);
     height: calc(100vh - $base-tabbar-height);
-    background-color: yellow;
     left: $base-menu-width;
     top: $base-tabbar-height;
     padding: 20px;

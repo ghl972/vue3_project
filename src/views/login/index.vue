@@ -45,7 +45,7 @@
 <script setup lang="ts">
 import { User, Lock } from '@element-plus/icons-vue'
 import { reactive, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { ElNotification } from 'element-plus'
 //引入获取当前时间的函数
 import { getTime } from '@/utils/time'
@@ -58,6 +58,8 @@ let useStore = useUserStore()
 let loginForms = ref()
 //获取路由器
 let $router = useRouter()
+//路由对象
+let $route = useRoute()
 //定义变量控制按钮加载效果
 let loading = ref(false)
 //收集账号与密码的数据
@@ -77,12 +79,14 @@ const login = async () => {
     //保证登陆成功
     await useStore.userLogin(loginForm)
     //编程式导航跳转到展示数据首页
-    $router.push('/')
+    //判断登陆的时候，路由路径当中是否有query参数，如果有就往query参数跳转，没有就跳转到首页
+    let redirect: any = $route.query.redirect
+    $router.push({ path: redirect || '/' })
     //登陆成功提示信息
     ElNotification({
       type: 'success',
       message: '欢迎回来',
-      title: `HI,${getTime}好`,
+      title: `HI,${getTime()}好`,
     })
     //登陆成功加载效果消失
     loading.value = false
