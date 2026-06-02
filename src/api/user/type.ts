@@ -1,7 +1,4 @@
 //定义用户相关数据的ts类型
-
-import type { s } from 'vue-router/dist/router-CWoNjPRp.mjs'
-
 //用户登录接口携带参数的ts类型
 export interface loginFormData {
   username: string
