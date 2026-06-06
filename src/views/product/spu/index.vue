@@ -37,7 +37,7 @@
                 title="添加SKU"
               ></el-button>
               <el-button
-                @click="updateSpu"
+                @click="updateSpu(row)"
                 type="warning"
                 size="small"
                 icon="Edit"
@@ -71,7 +71,11 @@
         />
       </div>
       <!-- 添加SPU|修改SPU子组件 -->
-      <SpuForm v-show="scene == 1" @changeScene="changeScene"></SpuForm>
+      <SpuForm
+        ref="spu"
+        v-show="scene == 1"
+        @changeScene="changeScene"
+      ></SpuForm>
       <!-- 添加SKU的子组件 -->
       <SkuForm v-show="scene == 2"></SkuForm>
     </el-card>
@@ -81,12 +85,13 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { reqHasSpu } from '@/api/product/spu'
-import type { HasSpuResponseData } from '@/api/product/spu/type'
+import type { HasSpuResponseData, SpuData } from '@/api/product/spu/type'
 //引入分类的仓库
 import useCategoryStore from '@/store/modules/category'
 import type { Records } from '@/api/product/trademark/type'
 import SpuForm from './spuForm.vue'
 import SkuForm from './skuForm.vue'
+import { ca } from 'element-plus/lib/locales.js'
 let categoryStore = useCategoryStore()
 //场景的数据
 let scene = ref<number>(0) //0 显示已有SPU 1:添加或修改已有SPU 2:添加SKU的结构
@@ -98,6 +103,8 @@ let pageSize = ref<number>(3)
 let records = ref<Records>([])
 //存储已有的SPU总个数
 let total = ref<number>(0)
+//获取子组件实例SpuForm
+let spu = ref<any>()
 
 //监听三级分类ID变化
 watch(
@@ -132,16 +139,30 @@ const changeSize = () => {
 const addSpu = () => {
   //切换为场景1:添加与修改已有SPU结构->SpuForm
   scene.value = 1
+  //点击添加SPU按钮，调用子组件的方法初始化数据
+  spu.value.initAddSpu(categoryStore.c3Id)
 }
 
 //修改已有的SPU的按钮的回调
-const updateSpu = () => {
+const updateSpu = (row: SpuData) => {
   scene.value = 1
+  //调用子组件实例方法获取完整已有的SPU的数据
+  spu.value.initHasSpuData(row)
 }
 
 //子组件SpuForm绑定自定义事件:目前是让子组件通知父组件切换场景为0
-const changeScene = (num: number) => {
+const changeScene = (obj: any) => {
+  console.log(obj)
+
   //子组件Spuform点击取消变为场景0:展示已有的SPU
-  scene.value = num
+  scene.value = obj.flag
+  //再次获取全部的已有SPU
+  if (obj.params == 'update') {
+    //更新留在当前页
+    getHasSpu(pageNo.value)
+  } else {
+    // 添加留在第一页
+    getHasSpu()
+  }
 }
 </script>
