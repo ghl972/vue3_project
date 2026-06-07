@@ -7,7 +7,10 @@ import type {
   SaleAttrResponseData,
   HasSaleAttrResponseData,
   SpuData,
+  SkuData,
+  SkuInfoData,
 } from './type'
+import type { st } from 'vue-router/dist/router-CWoNjPRp.mjs'
 enum API {
   //获取已有的SPU的数据
   HASSPU_URL = '/admin/product/',
@@ -23,6 +26,12 @@ enum API {
   ADDSPU_URL = '/admin/product/saveSpuInfo',
   //更新已有的SPU
   UPDATESPU_URL = '/admin/product/updateSpuInfo',
+  //追加一个新增的SKU地址
+  ADDSKU_URL = '/admin/product/saveSkuInfo',
+  //查看某一个已有的SPU下全部售卖的商品
+  SKUINFO_URL = '/admin/product/findBySpuId/',
+  //删除已有的SPU
+  REMOVESPU_URL = '/admin/product/deleteSpu/',
 }
 //获取某一个三级分类下已有的SPU数据
 export const reqHasSpu = (
@@ -57,3 +66,15 @@ export const reqAddOrUpdateSpu = (data: SpuData) => {
     return request.post<any, any>(API.ADDSPU_URL, data)
   }
 }
+
+//添加SKU的方法
+export const reqAddSku = (data: SkuData) =>
+  request.post<any, any>(API.ADDSKU_URL, data)
+
+//获取SKU数据
+export const reqSkuList = (spuId: number | string) =>
+  request.get<any, SkuInfoData>(API.SKUINFO_URL + spuId)
+
+//删除已有的SPU
+export const reqRemoveSpu = (spuId: number | string) =>
+  request.delete<any, any>(API.REMOVESPU_URL + spuId)
