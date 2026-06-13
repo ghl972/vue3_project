@@ -2,7 +2,8 @@
   <div class="home-bg-wrap">
     <el-card class="glass-card">
       <div class="box">
-        <img :src="userStore.avatar" alt="" class="avatar" />
+        <!-- <img :src="userStore.avatar" alt="" class="avatar" /> -->
+        <img src="@/assets/images/preview.jpg" alt="" class="avatar" />
         <div class="bottom">
           <h3 class="title">{{ getTime() }}好! {{ userStore.username }}</h3>
           <p class="subtitle">硅谷甄选运营平台</p>

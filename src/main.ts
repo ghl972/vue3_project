@@ -3,6 +3,8 @@ import App from './App.vue'
 //安装element-plus插件
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+//暗黑模式
+import 'element-plus/theme-chalk/dark/css-vars.css'
 //svg插件需要配置代码
 import 'virtual:svg-icons-register'
 //引入自定义插件对象：注册整个项目全局组件
