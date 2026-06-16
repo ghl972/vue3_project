@@ -1,9 +1,19 @@
 <template>
-    <div>
-        <h1>我是一级路由404</h1>
-    </div>
+  <div class="box">
+    <img src="../../assets/images/404.jpg" alt="" />
+  </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts"></script>
 
-</script>
+<style scoped lang="scss">
+.box {
+  width: 100vw;
+  height: 100vh;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+</style>

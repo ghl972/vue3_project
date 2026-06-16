@@ -15,7 +15,11 @@
           <Map class="map" />
           <Line class="line" />
         </div>
-        <div class="right"></div>
+        <div class="right">
+          <Rank class="rank" />
+          <Year class="year" />
+          <Counter class="counter" />
+        </div>
       </div>
     </div>
   </div>
@@ -34,6 +38,10 @@ import Age from './components/age/index.vue'
 import Map from './components/map/index.vue'
 import Line from './components/line/index.vue'
 
+//引入右侧三个子组件
+import Rank from './components/rank/index.vue'
+import Year from './components/year/index.vue'
+import Counter from './components/counter/index.vue'
 //获取数据大屏展示内容盒子的DOM元素
 let screen = ref()
 
@@ -76,6 +84,23 @@ function getScale(w = 1920, h = 1080) {
 
       .right {
         flex: 1;
+        margin-left: 40px;
+        display: flex;
+        flex-direction: column;
+        height: 1040px;
+
+        .rank {
+          /* 占1.5份 */
+          height: calc((100%) / 3.5 * 1.5);
+        }
+        .year {
+          /* 占1份 */
+          height: calc((100%) / 3.5 * 1);
+        }
+        .counter {
+          /* 占1份 */
+          height: calc((100%) / 3.5 * 1);
+        }
       }
 
       .left {
